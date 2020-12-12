@@ -1,0 +1,11 @@
+[
+  { "element": "none", "label": "指定なし" },
+  { "element": "fire", "label": "火属性" },
+  { "element": "ice", "label": "氷属性" },
+  { "element": "water", "label": "水属性" },
+  { "element": "soil", "label": "土属性" },
+  { "element": "wind", "label": "風属性" },
+  { "element": "thunder", "label": "雷属性" },
+  { "element": "light", "label": "光属性" },
+  { "element": "dark", "label": "闇属性" }
+]
