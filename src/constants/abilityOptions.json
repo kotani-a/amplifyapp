@@ -1,0 +1,509 @@
+[
+  {
+    "id": "statusUp",
+    "label": "ステータスアップ",
+    "children": [
+      {
+        "id": "statusUp-powerUp",
+        "type": "powerUp",
+        "label": "攻撃アップ"
+      },
+      {
+        "id": "statusUp-magicUp",
+        "type": "magicUp",
+        "label": "魔力アップ"
+      },
+      {
+        "id": "statusUp-hpUp",
+        "type": "hpUp",
+        "label": "最大HPアップ"
+      },
+      {
+        "id": "statusUp-shieldUp",
+        "type": "shieldUp",
+        "label": "防御アップ"
+      },
+      {
+        "id": "statusUp-barrierUp",
+        "type": "barrierUp",
+        "label": "精神アップ"
+      },
+      {
+        "id": "statusUp-aimingUp",
+        "type": "aimingUp",
+        "label": "命中アップ"
+      },
+      {
+        "id": "statusUp-dexterityUp",
+        "type": "dexterityUp",
+        "label": "器用さアップ"
+      },
+      {
+        "id": "statusUp-speedUp",
+        "type": "speedUp",
+        "label": "素早さアップ"
+      },
+      {
+        "id": "statusUp-luckUp",
+        "type": "luckUp",
+        "label": "運アップ"
+      },
+      {
+        "id": "statusUp-dodgeUp",
+        "type": "dodgeUp",
+        "label": "回避アップ"
+      },
+      {
+        "id": "statusUp-criticalUp",
+        "type": "criticalUp",
+        "label": "クリティカル発生率アップ"
+      }
+    ]
+  },
+  {
+    "id": "attackUp",
+    "label": "攻撃アップ",
+    "children": [
+      {
+        "id": "attackUp-elementAttackUp",
+        "label": "属性攻撃アップ",
+        "children": [
+          {
+            "id": "attackUp-elementAttackUp-fireAbilityAttackUp",
+            "type": "fireAbilityAttackUp",
+            "label": "火属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-iceAbilityAttackUp",
+            "type": "iceAbilityAttackUp",
+            "label": "氷属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-soilAbilityAttackUp",
+            "type": "soilAbilityAttackUp",
+            "label": "土属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-thunderAbilityAttackUp",
+            "type": "thunderAbilityAttackUp",
+            "label": "雷属性アビリティ攻撃アップ"
+          }
+        ]
+      },
+      {
+        "id": "attackUp-attackTypeUp",
+        "label": "攻撃タイプアップ",
+        "children": [
+          {
+            "id": "attackUp-attackTypeUp-slashingUp",
+            "type": "slashingUp",
+            "label": "斬撃攻撃アップ"
+          },
+          {
+            "id": "attackUp-attackTypeUp-stingUp",
+            "type": "stingUp",
+            "label": "刺突攻撃アップ"
+          },
+          {
+            "id": "attackUp-attackTypeUp-magicAttackUp",
+            "type": "magicAttackUp",
+            "label": "魔法攻撃アップ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "resistUp",
+    "label": "耐性アップ",
+    "children": [
+      {
+        "id": "resistUp-attackTypeResistUp",
+        "label": "攻撃タイプ耐性アップ",
+        "children": [
+          {
+            "id": "resistUp-attackTypeResistUp-slashingResistUp",
+            "type": "slashingResistUp",
+            "label": "斬撃攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-stingResistUp",
+            "type": "stingResistUp",
+            "label": "刺突攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-knockingResistUp",
+            "type": "knockingResistUp",
+            "label": "打撃攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-shootingResistUp",
+            "type": "shootingResistUp",
+            "label": "射撃攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-magicAttackResistUp",
+            "type": "magicAttackResistUp",
+            "label": "魔法攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-soloAttackResistUp",
+            "type": "soloAttackResistUp",
+            "label": "単体攻撃耐性アップ"
+          }
+        ]
+      },
+      {
+        "id": "resistUp-ResistUp",
+        "label": "属性耐性アップ",
+        "children": [
+          {
+            "id": "resistUp-ResistUp-fireAbilityResistUp",
+            "type": "fireAbilityResistUp",
+            "label": "火属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-iceAbilityResistUp",
+            "type": "iceAbilityResistUp",
+            "label": "氷属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-soilAbilityResistUp",
+            "type": "soilAbilityResistUp",
+            "label": "土属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-windAbilityResistUp",
+            "type": "windAbilityResistUp",
+            "label": "風属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-thunderAbilityResistUp",
+            "type": "thunderAbilityResistUp",
+            "label": "雷属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-waterAbilityResistUp",
+            "type": "waterAbilityResistUp",
+            "label": "水属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-lightAbilityResistUp",
+            "type": "lightAbilityResistUp",
+            "label": "光属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-ResistUp-darkAbilityResistUp",
+            "type": "darkAbilityResistUp",
+            "label": "闇属性アビリティ攻撃耐性アップ"
+          }
+        ]
+      },
+      {
+        "id": "abnormalConditionResistUp",
+        "label": "状態異常耐性アップ",
+        "children": [
+          {
+            "id": "resistUp-abnormalConditionResistUp-stopResistUp",
+            "type": "stopResistUp",
+            "label": "ストップ耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-slowResistUp",
+            "type": "slowResistUp",
+            "label": "スロウ耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-toadResistUp",
+            "type": "toadResistUp",
+            "label": "トード耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-disableResistUp",
+            "type": "disableResistUp",
+            "label": "ドンアク耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-berserkResistUp",
+            "type": "berserkResistUp",
+            "label": "バーサク耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-blindResistUp",
+            "type": "blindResistUp",
+            "label": "暗闇耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-confusionResistUp",
+            "type": "confusionResistUp",
+            "label": "混乱耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-charmResistUp",
+            "type": "charmResistUp",
+            "label": "魅了耐性アップ"
+          },
+          {
+            "id": "resistUp-abnormalConditionResistUp-petrifyResistUp",
+            "type": "petrifyResistUp",
+            "label": "石化耐性アップ"
+          }
+        ]
+      },
+      {
+        "id": "resistUp-downResistUp",
+        "label": "弱体耐性アップ",
+        "children": [
+          {
+            "id": "resistUp-downResistUp-allDebuffResistUp",
+            "type": "allDebuffResistUp",
+            "label": "全弱体耐性アップ"
+          },
+          {
+            "id": "resistUp-downResistUp-powerDownResistUp",
+            "type": "powerDownResistUp",
+            "label": "攻撃弱体耐性アップ"
+          },
+          {
+            "id": "resistUp-downResistUp-shieldDownResistUp",
+            "type": "shieldDownResistUp",
+            "label": "防御弱体耐性アップ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "killerUp",
+    "label": "キラーアップ",
+    "children": [
+      {
+        "id": "killerUp-elementKillerUp",
+        "label": "属性キラーアップ",
+        "children": [
+          {
+            "id": "killerUp-elementKillerUp-fireKillerUp",
+            "type": "fireKillerUp",
+            "label": "火属性キラーアップ"
+          },
+          {
+            "id": "killerUp-elementKillerUp-iceKillerUp",
+            "type": "iceKillerUp",
+            "label": "氷属性キラーアップ"
+          },
+          {
+            "id": "killerUp-elementKillerUp-windKillerUp",
+            "type": "windKillerUp",
+            "label": "風属性キラーアップ"
+          },
+          {
+            "id": "killerUp-elementKillerUp-soilKillerUp",
+            "type": "soilKillerUp",
+            "label": "土属性キラーアップ"
+          },
+          {
+            "id": "killerUp-elementKillerUp-darkKillerUp",
+            "type": "darkKillerUp",
+            "label": "闇属性キラーアップ"
+          }
+        ]
+      },
+      {
+        "id": "killerUp-humankillerUp",
+        "type": "humankillerUp",
+        "label": "人キラーアップ"
+      },
+      {
+        "id": "killerUp-magicAttackHumanKillerUp",
+        "type": "magicAttackHumanKillerUp",
+        "label": "魔法攻撃時人キラーアップ"
+      },
+      {
+        "id": "killerUp-beastkillerUp",
+        "type": "beastkillerUp",
+        "label": "獣キラーアップ"
+      },
+      {
+        "id": "killerUp-birdkillerUp",
+        "type": "birdkillerUp",
+        "label": "鳥キラーアップ"
+      },
+      {
+        "id": "killerUp-reaperkillerUp",
+        "type": "reaperkillerUp",
+        "label": "死霊キラーアップ"
+      }
+    ]
+  },
+  {
+    "id": "element",
+    "label": "属性",
+    "children": [
+      {
+        "id": "element-elementAttackUp",
+        "label": "属性攻撃アップ",
+        "children": [
+          {
+            "id": "element-elementAttackUp-fireAbilityAttackUp",
+            "type": "fireAbilityAttackUp",
+            "label": "火属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-iceAbilityAttackUp",
+            "type": "iceAbilityAttackUp",
+            "label": "氷属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-soilAbilityAttackUp",
+            "type": "soilAbilityAttackUp",
+            "label": "土属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-thunderAbilityAttackUp",
+            "type": "thunderAbilityAttackUp",
+            "label": "雷属性アビリティ攻撃アップ"
+          }
+        ]
+      },
+      {
+        "id": "element-ResistUp",
+        "label": "属性耐性アップ",
+        "children": [
+          {
+            "id": "element-ResistUp-fireAbilityResistUp",
+            "type": "fireAbilityResistUp",
+            "label": "火属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-iceAbilityResistUp",
+            "type": "iceAbilityResistUp",
+            "label": "氷属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-windAbilityResistUp",
+            "type": "windAbilityResistUp",
+            "label": "風属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-soilAbilityResistUp",
+            "type": "soilAbilityResistUp",
+            "label": "土属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-thunderAbilityResistUp",
+            "type": "thunderAbilityResistUp",
+            "label": "雷属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-waterAbilityResistUp",
+            "type": "waterAbilityResistUp",
+            "label": "水属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-lightAbilityResistUp",
+            "type": "lightAbilityResistUp",
+            "label": "光属性アビリティ攻撃耐性アップ"
+          },
+          {
+            "id": "element-ResistUp-darkAbilityResistUp",
+            "type": "darkAbilityResistUp",
+            "label": "闇属性アビリティ攻撃耐性アップ"
+          }
+        ]
+      },
+      {
+        "id": "element-elementKillerUp",
+        "label": "属性キラーアップ",
+        "children": [
+          {
+            "id": "element-elementKillerUp-fireKillerUp",
+            "type": "fireKillerUp",
+            "label": "火属性キラーアップ"
+          },
+          {
+            "id": "element-elementKillerUp-iceKillerUp",
+            "type": "iceKillerUp",
+            "label": "氷属性キラーアップ"
+          },
+          {
+            "id": "element-elementKillerUp-windKillerUp",
+            "type": "windKillerUp",
+            "label": "土属性キラーアップ"
+          },
+          {
+            "id": "element-elementKillerUp-soilKillerUp",
+            "type": "soilKillerUp",
+            "label": "土属性キラーアップ"
+          },
+          {
+            "id": "element-elementKillerUp-darkKillerUp",
+            "type": "darkKillerUp",
+            "label": "闇属性キラーアップ"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "others",
+    "label": "その他",
+    "children": [
+      {
+        "id": "others-penetrationUp",
+        "label": "貫通率アップ",
+        "children": [
+          {
+            "id": "others-penetrationUp-shieldPenetrationUp",
+            "type": "shieldPenetrationUp",
+            "label": "防御貫通率アップ"
+          },
+          {
+            "id": "others-penetrationUp-slashingResistPenetrationUp",
+            "type": "slashingResistPenetrationUp",
+            "label": "斬撃耐性貫通率アップ"
+          },
+          {
+            "id": "others-penetrationUp-magicAttackResistPenetrationUp",
+            "type": "magicAttackResistPenetrationUp",
+            "label": "魔法攻撃耐性貫通率アップ"
+          }
+        ]
+      },
+      {
+        "id": "others-getApUp",
+        "type": "getApUp",
+        "label": "獲得APアップ"
+      },
+      {
+        "id": "others-getJpUp",
+        "type": "getJpUp",
+        "label": "獲得JPアップ"
+      },
+      {
+        "id": "others-criticalDamageUp",
+        "type": "criticalDamageUp",
+        "label": "クリティカルダメージアップ"
+      },
+      {
+        "id": "others-criticalDodgeUp",
+        "type": "criticalDodgeUp",
+        "label": "クリティカル回避アップ"
+      },
+      {
+        "id": "others-damegeLimitUp",
+        "type": "damegeLimitUp",
+        "label": "ダメージ上限アップ"
+      },
+      {
+        "id": "others-ChantTimeDown",
+        "type": "ChantTimeDown",
+        "label": "詠唱時間短縮"
+      },
+      {
+        "id": "others-hateUp",
+        "type": "hateUp",
+        "label": "ヘイトアップ"
+      }
+    ]
+  }
+]

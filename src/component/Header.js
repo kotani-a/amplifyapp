@@ -441,7 +441,6 @@ class Header extends Component {
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
-                      aria-label="toggle password visibility"
                       onClick={() => this.handleClickShowSignInPassword()}
                       onMouseDown={event => this.handleMouseDownPassword(event)}
                       edge="end"
@@ -495,10 +494,6 @@ class Header extends Component {
         </div>
       </Dialog>
     )
-  }
-
-  componentDidMount () {
-    // this.getUserData()
   }
 
   render () {
