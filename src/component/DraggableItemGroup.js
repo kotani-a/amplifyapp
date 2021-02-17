@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
 import  DraggableItem from './DraggableItem.js';
+import css from '../css/DraggableItemGroup.module.css'
 
 const itemTarget = {
   drop() {}
@@ -57,7 +58,7 @@ class DraggableItemGroup extends Component {
       tmpHeaders
     } = this.props;
     return  connectDropTarget(
-      <div>
+      <div className={css.draggableItemGroup}>
         {tmpHeaders.map((header, i) => (
           <DraggableItem
             key={header.id}

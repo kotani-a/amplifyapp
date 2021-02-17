@@ -9,8 +9,53 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Dialog from '@material-ui/core/Dialog';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import Grid from '@material-ui/core/Grid';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Auth } from "aws-amplify"
+import { withStyles } from '@material-ui/core/styles';
+import css from '../css/Header.module.css';
+import vcmImage from "../images/vcm5.png" 
+
+const CustomDialog = withStyles(() => ({
+  root: {
+    '& .MuiDialog-paper': {
+      padding: '8px'
+    }
+  },
+}))(Dialog);
+
+const CustomButton = withStyles(() => ({
+  root: {
+    alignSelf: 'center',
+    marginTop: 'auto'
+  },
+}))(Button);
+
+const DialogButton = withStyles(() => ({
+  root: {
+    margin: '4px',
+  },
+}))(Button);
+
+const DialogCenterButton = withStyles(() => ({
+  root: {
+    margin: '4px',
+    alignSelf: 'center'
+  },
+}))(Button);
+
+const VisibilityIconButton = withStyles(() => ({
+  root: {
+    padding: '0',
+    alignSelf: 'flex-end',
+    marginBottom: '4px'
+  },
+}))(IconButton);
+
+const CustomTextField = withStyles(() => ({
+  root: {
+    margin: '4px'
+  },
+}))(TextField);
 
 class Header extends Component {
   constructor (props) {
@@ -278,21 +323,31 @@ class Header extends Component {
   };
 
   renderAccountButton () {
+    const { drawerOpen } = this.props
+    const buttonStyles = {
+      position: 'absolute',
+      top: '5px',
+      right: drawerOpen ? '8px' : '40px'
+    };
     if (this.props.clientId) {
       return (
-        <Button
+        <IconButton
+          style={buttonStyles}
+          size="small"
           variant="outlined"
           onClick={() => this.singOutDialogOpen()}>
-          account
-        </Button>
+          <AccountCircleIcon />
+        </IconButton>
       )
     } else {
       return (
-        <Button
+        <IconButton
+          style={buttonStyles}
+          size="small"
           variant="outlined"
           onClick={() => this.singInDialogOpen()}>
-          account
-        </Button>
+          <AccountCircleIcon />
+        </IconButton>
       )
     }
   }
@@ -314,60 +369,54 @@ class Header extends Component {
     } = this.state
 
     return (
-      <Dialog
+      <CustomDialog
         open={ singUpDialog }
         onClose={() => this.singUpDialogClose()}>
-        <div style={{ margin: '8px'}}>
-          <h2>sing up</h2>
-          <span>作成後、入力したアドレスに確認コードが送られます。</span>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}>
+        <h2 className={css.headerText}>新規アカウント作成</h2>
+        <div className={css.dialogWrap}>
+          <span className={css.helperText}>作成後、入力したアドレスに確認コードが送られます。</span>
+          <CustomTextField
+            id="signUpName"
+            label="Name"
+            required
+            error={ signUpNameError }
+            helperText={ signUpNameHelperText }
+            onChange={event => this.signUpNameValueChange(event)} />
+          <div className={css.passwordTextField}>
             <TextField
-              id="signUpName"
-              label="name"
+              id="signUpPassword"
+              label="Password"
               required
-              error={ signUpNameError }
-              helperText={ signUpNameHelperText }
-              onChange={event => this.signUpNameValueChange(event)}/>
-            <Grid container spacing={1} alignItems="flex-end">
-              <Grid item>
-                <TextField
-                  id="signUpPassword"
-                  label="password"
-                  required
-                  type={signUpShowPassword ? 'text' : 'password'}
-                  error={ signUpPasswordError }
-                  helperText={ signUpPasswordHelperText }
-                  onChange={event => this.signUpPasswordValueChange(event)}/>
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={() => this.handleClickShowSignUpPassword()}
-                  onMouseDown={event => this.handleMouseDownPassword(event)}
-                  style={{ marginTop: '8px' }}
-                  edge="end"
-                >
-                  {signUpShowPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </Grid>
-            </Grid>
-            <TextField
-              id="signUpEmail"
-              label="email"
-              required
-              error={ signUpEmailError }
-              helperText={ signUpEmailHelperText }
-              onChange={event => this.signUpEmailValueChange(event)}/>
-          </div >
-          <div style={{ color: '#f44336', margin: '4px' }}>{ signUpHelperText }</div>
-          <Button
-            style={{ margin: '4px' }}
-            variant="outlined"
-            onClick={() => this.signUp()}
-            disabled={ signUpNameError || !signUpName || signUpPasswordError || !signUpPassword || signUpEmailError || !signUpEmail }>
-            creat account
-          </Button>
+              type={signUpShowPassword ? 'text' : 'password'}
+              error={ signUpPasswordError }
+              helperText={ signUpPasswordHelperText }
+              onChange={event => this.signUpPasswordValueChange(event)}/>
+            <VisibilityIconButton
+              aria-label="toggle password visibility"
+              onClick={() => this.handleClickShowSignUpPassword()}
+              onMouseDown={event => this.handleMouseDownPassword(event)}
+              edge="end"
+            >
+              {signUpShowPassword ? <Visibility /> : <VisibilityOff />}
+            </VisibilityIconButton>
+          </div>
+          <CustomTextField
+            id="signUpEmail"
+            label="email"
+            required
+            error={ signUpEmailError }
+            helperText={ signUpEmailHelperText }
+            onChange={event => this.signUpEmailValueChange(event)}/>
+          <div className={css.helperTextRed}>{ signUpHelperText }</div>
         </div>
-      </Dialog>
+        <DialogCenterButton
+          size="small"
+          variant="outlined"
+          onClick={() => this.signUp()}
+          disabled={ signUpNameError || !signUpName || signUpPasswordError || !signUpPassword || signUpEmailError || !signUpEmail }>
+          アカウント作成
+        </DialogCenterButton>
+      </CustomDialog>
     )
   }
 
@@ -379,35 +428,32 @@ class Header extends Component {
       confirmSignUpHelperText
     } = this.state
     return (
-      <Dialog
+      <CustomDialog
         open={ confirmSingUpDialog }
         onClose={() => this.confirmSingUpDialogClose()}>
-        <div style={{ margin: '8px'}}>
-          <h2>confirm sing up</h2>
-          <span>確認コードを入力してください。</span>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}>
-            <TextField
-              id="confirmSignUpName"
-              label="name"
-              required
-              onChange={event => this.confirmSignUpNameValueChange(event)}/>
-            <TextField
-              id="confirmSignUpCode"
-              label="code"
-              required
-              onChange={event => this.confirmSignUpCodeValueChange(event)}/>
-          </div >
-          <div style={{ color: '#f44336', margin: '4px' }}>{ confirmSignUpHelperText }</div>
-          <Button
-            style={{ margin: '4px' }}
-            variant="outlined"
-            onClick={() => this.confirmSignUp()}
-            disabled={!confirmSignUpName || !confirmSignUpCode}>
-            confirm
-          </Button>
+        <h2 className={css.headerText}>確認コード入力</h2>
+        <span className={css.helperText}>確認コードを入力してください。</span>
+        <div className={css.dialogWrap}>
+          <CustomTextField
+            id="confirmSignUpName"
+            label="Name"
+            required
+            onChange={event => this.confirmSignUpNameValueChange(event)}/>
+          <CustomTextField
+            id="confirmSignUpCode"
+            label="Code"
+            required
+            onChange={event => this.confirmSignUpCodeValueChange(event)}/>
+          <div className={css.helperTextRed}>{ confirmSignUpHelperText }</div>
         </div>
-      </Dialog>
+        <DialogCenterButton
+          size="small"
+          variant="outlined"
+          onClick={() => this.confirmSignUp()}
+          disabled={!confirmSignUpName || !confirmSignUpCode}>
+          確認
+        </DialogCenterButton>
+      </CustomDialog>
     )
   }
 
@@ -420,23 +466,28 @@ class Header extends Component {
       signInHelperText
     } = this.state
     return (
-      <Dialog
+      <CustomDialog
         open={singInDialog}
         onClose={() => this.singInDialogClose()}>
-        <div style={{ margin: '8px'}}>
-          <h2>sing in</h2>
-          <div
-            style={{ display: 'flex', flexDirection: 'column' }}>
-            <TextField
+        <div>
+          <h2 className={css.headerText}>サインイン</h2>
+          <div className={css.dialogWrap}>
+            <CustomTextField
               id="signInName"
-              label="name"
+              label="Name"
+              color="secondary"
               onChange={event => this.signInNameValueChange(event)}/>
             <FormControl style={{ margin: '4px' }}>
-              <InputLabel htmlFor="signInPassword">Password</InputLabel>
+              <InputLabel
+                htmlFor="signInPassword"
+                color="secondary">
+                Password
+              </InputLabel>
               <Input
                 id="signInPassword"
                 type={signInShowPassword ? 'text' : 'password'}
                 value={signInPassword}
+                color="secondary"
                 onChange={event => this.signInPasswordValueChange(event)}
                 endAdornment={
                   <InputAdornment position="end">
@@ -451,60 +502,71 @@ class Header extends Component {
                 }
               />
             </FormControl>
-          </div >
-          <div style={{ color: '#f44336', margin: '4px' }}>{ signInHelperText }</div>
-          <Button
-            style={{ margin: '4px' }}
-            variant="outlined"
-            onClick={() => this.signIn()}
-            disabled={ !signInName || !signInPassword }>
-            sign in
-          </Button>
-          <Button
-            style={{ margin: '4px' }}
-            variant="outlined"
-            onClick={() => this.onAccountCreatButton()}>
-            new account
-          </Button>
-          <Button
-            style={{ margin: '4px' }}
-            variant="outlined"
-            onClick={() => this.onAccountConfirmButton()}>
-            confirm singUp
-          </Button>
+            <div className={css.helperTextRed}>{ signInHelperText }</div>
+          </div>
+          <div>
+            <DialogButton
+              size="small"
+              variant="outlined"
+              onClick={() => this.signIn()}
+              disabled={ !signInName || !signInPassword }>
+              サインイン
+            </DialogButton>
+            <DialogButton
+              size="small"
+              variant="outlined"
+              onClick={() => this.onAccountCreatButton()}>
+              新規アカウント作成
+            </DialogButton>
+            <DialogButton
+              size="small"
+              variant="outlined"
+              onClick={() => this.onAccountConfirmButton()}>
+              確認コード入力
+            </DialogButton>
+          </div>
         </div>
-      </Dialog>
+      </CustomDialog>
     )
   }
 
   renderSingOutDialog () {
     return (
-      <Dialog
+      <CustomDialog
         open={this.state.singOutDialog}
         onClose={() => this.singOutDialogClose()}>
-          <div style={{ margin: '8px'}}>
-          <h2>account Info</h2>
-          <h3>name: {this.props.userName}</h3>
-          <h3>ID: {this.props.clientId}</h3>
-          <Button
-            variant="outlined"
-            onClick={() => this.signOut()}>
-            signout
-          </Button>
-        </div>
-      </Dialog>
+          <div className={css.dialogWrap}>
+            <h2 className={css.headerText}>アカウント情報</h2>
+            <div className={css.dialogBody}>
+              <p className={css.dialogParagraph}>ユーザー名: {this.props.userName}</p>
+              <p className={css.dialogParagraph}>ID: {this.props.clientId}</p>
+            </div>
+            <CustomButton
+              variant="outlined"
+              size="small"
+              onClick={() => this.signOut()}>
+              signout
+            </CustomButton>
+          </div>
+      </CustomDialog>
     )
   }
 
   render () {
     return (
-      <div>
+      <div className={css.clearfix}>
         { this.renderAccountButton() }
         { this.renderSingUpDialog() }
         { this.renderConfirmSingUpDialog() }
         { this.renderSingInDialog() }
         { this.renderSingOutDialog() }
-        <h1>vision cards master</h1>
+        <h1 className={css.header}>
+          <img
+            src={vcmImage}
+            alt="visition cards master"
+            className={css.headerImage}
+          ></img>
+        </h1>
       </div>
     )
   }

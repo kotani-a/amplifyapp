@@ -25,6 +25,7 @@ class App extends Component {
       myCards: [],
       possessionDisplay: false,
       loading: true,
+      drawerOpen: false,
       headers: [
         { id: 'rarity', label: 'レアリティ', display: true },
         { id: 'name', label: '名前', display: true },
@@ -73,6 +74,8 @@ class App extends Component {
     this.headerSet = this.headerSet.bind(this);
     this.loadingStart = this.loadingStart.bind(this);
     this.loadingEnd = this.loadingEnd.bind(this);
+    this.openDrawer = this.openDrawer.bind(this);
+    this.closeDrawer = this.closeDrawer.bind(this);
     this.CardsTable = React.createRef();
   }
 
@@ -128,7 +131,7 @@ class App extends Component {
       // 付加効果2
       if (card.ability2Type && !result.some(option => option.type === card.ability2Type)) {
         result.push({
-          type: card.ability1Type,
+          type: card.ability2Type,
           label: card.ability2TypeLabel
         });
       }
@@ -153,6 +156,11 @@ class App extends Component {
         });
       }
     });
+    result.sort((a,b) => {
+      if(a.label < b.label) return -1;
+      if(a.label > b.label) return 1;
+      return 0;
+  });
     this.setState({ abilityTypeOptoins: result });
   }
 
@@ -228,6 +236,14 @@ class App extends Component {
     this.setState({ loading: false });
   }
 
+  openDrawer () {
+    this.setState({ drawerOpen: true });
+  }
+
+  closeDrawer () {
+    this.setState({ drawerOpen: false });
+  }
+
   componentDidMount () {
     this.getUserData();
     this.getCards();
@@ -248,14 +264,20 @@ class App extends Component {
       myCards,
       possessionDisplay,
       headers,
-      loading
+      loading,
+      drawerOpen
     } = this.state
     return (
-      <div className="App">
+      <div
+        style={{
+          width: drawerOpen ? 'calc(100% - 280px)' : '100%'
+        }}
+        className="mainWrap">
         <Header
           setUserData={this.setUserData}
           userName={userName}
           clientId={clientId}
+          drawerOpen={drawerOpen}
         />
         <Conditions
           abilityTypeOptoins={abilityTypeOptoins}
@@ -275,6 +297,9 @@ class App extends Component {
           possessionDisplay={possessionDisplay}
           loadingStart={this.loadingStart}
           loadingEnd={this.loadingEnd}
+          drawerOpen={drawerOpen}
+          openDrawer={this.openDrawer}
+          closeDrawer={this.closeDrawer}
         />
         <CardsTable
           ref={this.CardsTable}
@@ -290,6 +315,7 @@ class App extends Component {
           myCards={myCards}
           possessionDisplay={possessionDisplay}
           headers={headers}
+          drawerOpen={drawerOpen}
         />
         <Progress
           loading={loading} />

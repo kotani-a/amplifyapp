@@ -7,6 +7,35 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import CheckIcon from '@material-ui/icons/Check';
 import TreeItem from '@material-ui/lab/TreeItem';
 import abilityOptions from '../constants/abilityOptions.json';
+import { withStyles } from '@material-ui/core/styles';
+import css from '../css/ConditionDialog.module.css'
+
+
+const CustomDialog = withStyles(() => ({
+  root: {
+    '& .MuiDialog-paper': {
+      width: '50%',
+      height: '50%',
+      padding: '8px',
+      overflowY: 'hidden'
+    }
+  },
+}))(Dialog);
+
+
+const CustomTreeView = withStyles(() => ({
+  root: {
+    margin: '8px 0',
+    overflowY: 'auto'
+  },
+}))(TreeView);
+
+const CustomButton = withStyles(() => ({
+  root: {
+    alignSelf: 'center',
+    marginTop: 'auto'
+  },
+}))(Button);
 
 class ConditionDialog extends Component {
   constructor (props) {
@@ -18,6 +47,10 @@ class ConditionDialog extends Component {
   }
 
   conditionDialogClose () {
+    this.setState({
+      selectVal: {},
+      selectValId: ''
+    });
     this.props.conditionDialogClose();
   }
 
@@ -30,21 +63,22 @@ class ConditionDialog extends Component {
     }
   }
 
+  confirmCondition () {
+    const { selectVal } = this.state
+    const { conditionSet } = this.props
+    this.conditionDialogClose();
+    conditionSet(selectVal)
+  }
+
   render () {
-    const {
-      selectVal,
-      selectValId
-    } = this.state
-    const {
-      conditionDialog,
-      conditionSet
-    } = this.props
+    const { selectValId } = this.state
+    const { conditionDialog } = this.props
     return (
-      <Dialog
+      <CustomDialog
         open={conditionDialog}
         onClose={() => this.conditionDialogClose()}>
-        <h2>条件選択</h2>
-        <TreeView
+        <h2 className={css.headerText}>条件選択</h2>
+        <CustomTreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ChevronRightIcon />}>
           {abilityOptions.map((option, index) => 
@@ -55,11 +89,11 @@ class ConditionDialog extends Component {
               {option.children ?
                 option.children.map((children1Option, children1Index) =>
                   <TreeItem
-                    nodeId={`children1-${children1Index}`}
-                    key={`children1-${children1Index}`}
+                    nodeId={`children1-${index}-${children1Index}`}
+                    key={`children1-${index}-${children1Index}`}
                     label={
-                      <div>
-                        {children1Option.label}
+                      <div className={css.treeItem}>
+                        <span className={css.treeItemLabel}>{children1Option.label}</span>
                         <CheckIcon style={children1Option.id === selectValId ? { color: "initial" } : { color: "transparent" }} />
                       </div>
                     }
@@ -67,11 +101,11 @@ class ConditionDialog extends Component {
                       {children1Option.children ?
                         children1Option.children.map((children2Option, children2Index) =>
                           <TreeItem
-                            nodeId={`children2-${children2Index}`}
-                            key={`children2-${children2Index}`}
+                            nodeId={`children2-${index}-${children1Index}-${children2Index}`}
+                            key={`children2-${index}-${children1Index}-${children2Index}`}
                             label={
-                              <div>
-                                {children2Option.label}
+                              <div className={css.treeItem}>
+                                <span className={css.treeItemLabel}>{children2Option.label}</span>
                                 <CheckIcon style={children2Option.id === selectValId ? { color: "initial" } : { color: "transparent" }} />
                               </div>
                             }
@@ -83,13 +117,14 @@ class ConditionDialog extends Component {
               :null}
             </TreeItem>
           )}
-        </TreeView>
-        <Button
+        </CustomTreeView>
+        <CustomButton
           variant="outlined"
-          onClick={() => conditionSet(selectVal)}>
+          size="small"
+          onClick={() => this.confirmCondition()}>
           確定
-        </Button>
-      </Dialog>
+        </CustomButton>
+      </CustomDialog>
     );
   }
 }

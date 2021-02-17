@@ -1,0 +1,31 @@
+.conditionsWrap {
+  margin: 0;
+}
+
+.conditionHeader {
+  color: #1b1515;
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.conditionBoxWrap {
+  display: flex;
+  margin: 8px 0;
+  border: solid 1px rgb(128, 128, 128);
+  border-radius: 4px;
+}
+
+.elementBoxWrap {
+  margin-top: 10px;
+}
+
+.divider {
+  width: 1px;
+  background-color: rgb(128, 128, 128);
+  border: none;
+}
+
+.conditionButtons {
+  margin: 12px 8px;
+  text-align: left;
+}

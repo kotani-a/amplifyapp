@@ -9,8 +9,16 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TablePagination from '@material-ui/core/TablePagination';
 import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles } from '@material-ui/core/styles';
 import elementOptions from '../constants/elementOptions.json';
-// import css from '../css/CardsTable.module.css';
+
+const CustomTablePagination = withStyles(() => ({
+  root: {
+    '& .MuiTablePagination-spacer': {
+      display: 'none'
+    }
+  },
+}))(TablePagination);
 
 class CardsTable extends Component {
   constructor (props) {
@@ -20,13 +28,29 @@ class CardsTable extends Component {
       orderBy: 'rarity',
       selectedCardIds: [],
       rowsPerPage: 25,
-      page: 0
+      page: 0,
+      tableHeight: 600
     };
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
     this.setCardsLength = this.setCardsLength.bind(this);
     this.makeRarityLabel = this.makeRarityLabel.bind(this);
     this.makeElementLabel = this.makeElementLabel.bind(this);
+  }
+
+  componentDidMount() {
+    this.setTableHeight();
+    window.addEventListener('resize', () => {
+      this.setTableHeight();
+    });
+  }
+
+  setTableHeight () {
+    const haederHeight = 119
+    const conditionsRowHeight = 62
+    const tableFooterHeight = 52
+    let tableHeight = window.innerHeight - haederHeight - conditionsRowHeight - tableFooterHeight
+    this.setState({ tableHeight: tableHeight });
   }
 
   handleRequestSort (property) {
@@ -280,7 +304,8 @@ class CardsTable extends Component {
       orderBy,
       order,
       rowsPerPage,
-      page
+      page,
+      tableHeight
     } = this.state;
     const {
       cards,
@@ -361,7 +386,7 @@ class CardsTable extends Component {
 
     return (
       <div>
-        <TableContainer style={{ overflow: "scroll", maxHeight: "500px" }}>
+        <TableContainer style={{ overflow: "scroll", maxHeight: `${tableHeight}px` }}>
           <Table
             size="small"
             dense="true"
@@ -390,7 +415,7 @@ class CardsTable extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
+        <CustomTablePagination
           rowsPerPageOptions={[25, 50, 100]}
           rowsPerPage={rowsPerPage}
           page={page}

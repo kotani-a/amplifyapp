@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { DragSource, DropTarget } from 'react-dnd';
 import Switch from '@material-ui/core/Switch';
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
+import css from '../css/DraggableItem.module.css'
 
 const itemTarget = {
   canDrop() {
@@ -66,12 +67,13 @@ class DraggableItem extends Component {
     } = this.props;
     return connectDragSource(
       connectDropTarget(
-        <div style={{backgroundColor: "#dddddd"}}>
+        <div className={css.draggableItem}>
           <DragIndicatorIcon />
           <span>{header.label}</span>
           <Switch
             name={header.id}
             checked={checked}
+            disabled={header.id === 'name' ? true : false}
             onChange={event => changeHeaderDisplay(event, header)}
           />
         </div>

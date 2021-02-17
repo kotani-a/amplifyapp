@@ -1,0 +1,53 @@
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.header {
+  margin: 0;
+}
+
+.headerImage {
+  float: left;
+  padding: 8px;
+}
+
+.dialogWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogBody {
+  margin: 12px 0;
+}
+
+.headerText {
+  color: #1b1515;
+  font-size: 24px;
+  top: 0;
+  background-color: #fafafa;
+  z-index: 1;
+  padding: 8px;
+}
+
+.dialogParagraph {
+  color: #1b1515;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.helperText {
+  color: #1b1515;
+  margin: 16px 4px 8px 4px;
+}
+
+.helperTextRed {
+  color: #f44336;
+  margin: 16px 4px;
+}
+
+.passwordTextField {
+  margin: 4px;
+  display: flex;
+}

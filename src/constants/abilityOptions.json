@@ -19,6 +19,11 @@
         "label": "最大HPアップ"
       },
       {
+        "id": "statusUp-tpUp",
+        "type": "tpUp",
+        "label": "最大TPアップ"
+      },
+      {
         "id": "statusUp-shieldUp",
         "type": "shieldUp",
         "label": "防御アップ"
@@ -74,9 +79,19 @@
             "label": "火属性アビリティ攻撃アップ"
           },
           {
+            "id": "attackUp-elementAttackUp-waterAbilityAttackUp",
+            "type": "waterAbilityAttackUp",
+            "label": "水属性アビリティ攻撃アップ"
+          },
+          {
             "id": "attackUp-elementAttackUp-iceAbilityAttackUp",
             "type": "iceAbilityAttackUp",
             "label": "氷属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-windAbilityAttackUp",
+            "type": "windAbilityAttackUp",
+            "label": "風属性アビリティ攻撃アップ"
           },
           {
             "id": "attackUp-elementAttackUp-soilAbilityAttackUp",
@@ -87,6 +102,16 @@
             "id": "attackUp-elementAttackUp-thunderAbilityAttackUp",
             "type": "thunderAbilityAttackUp",
             "label": "雷属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-lightAbilityAttackUp",
+            "type": "lightAbilityAttackUp",
+            "label": "光属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "attackUp-elementAttackUp-darkAbilityAttackUp",
+            "type": "darkAbilityAttackUp",
+            "label": "闇属性アビリティ攻撃アップ"
           }
         ]
       },
@@ -100,9 +125,19 @@
             "label": "斬撃攻撃アップ"
           },
           {
+            "id": "attackUp-attackTypeUp-shootingUp",
+            "type": "shootingUp",
+            "label": "射撃攻撃アップ"
+          },
+          {
             "id": "attackUp-attackTypeUp-stingUp",
             "type": "stingUp",
             "label": "刺突攻撃アップ"
+          },
+          {
+            "id": "attackUp-attackTypeUp-knockingUp",
+            "type": "knockingUp",
+            "label": "打撃攻撃アップ"
           },
           {
             "id": "attackUp-attackTypeUp-magicAttackUp",
@@ -150,6 +185,11 @@
             "id": "resistUp-attackTypeResistUp-soloAttackResistUp",
             "type": "soloAttackResistUp",
             "label": "単体攻撃耐性アップ"
+          },
+          {
+            "id": "resistUp-attackTypeResistUp-rangeAttackResistUp",
+            "type": "rangeAttackResistUp",
+            "label": "範囲攻撃耐性アップ"
           }
         ]
       },
@@ -305,6 +345,11 @@
             "id": "killerUp-elementKillerUp-darkKillerUp",
             "type": "darkKillerUp",
             "label": "闇属性キラーアップ"
+          },
+          {
+            "id": "killerUp-elementKillerUp-lightKillerUp",
+            "type": "lightKillerUp",
+            "label": "光属性キラーアップ"
           }
         ]
       },
@@ -312,6 +357,11 @@
         "id": "killerUp-humankillerUp",
         "type": "humankillerUp",
         "label": "人キラーアップ"
+      },
+      {
+        "id": "killerUp-physicsAttackHumankillerUp",
+        "type": "physicsAttackHumankillerUp",
+        "label": "物理攻撃時人キラーアップ"
       },
       {
         "id": "killerUp-magicAttackHumanKillerUp",
@@ -324,9 +374,24 @@
         "label": "獣キラーアップ"
       },
       {
+        "id": "killerUp-plantKiller",
+        "type": "plantKiller",
+        "label": "植物キラーアップ"
+      },
+      {
         "id": "killerUp-birdkillerUp",
         "type": "birdkillerUp",
         "label": "鳥キラーアップ"
+      },
+      {
+        "id": "killerUp-aquaticKillerUp",
+        "type": "aquaticKillerUp",
+        "label": "水棲キラーアップ"
+      },
+      {
+        "id": "killerUp-demonKillerUp",
+        "type": "demonKillerUp",
+        "label": "悪魔キラーアップ"
       },
       {
         "id": "killerUp-reaperkillerUp",
@@ -354,6 +419,11 @@
             "label": "氷属性アビリティ攻撃アップ"
           },
           {
+            "id": "element-elementAttackUp-windAbilityAttackUp",
+            "type": "windAbilityAttackUp",
+            "label": "風属性アビリティ攻撃アップ"
+          },
+          {
             "id": "element-elementAttackUp-soilAbilityAttackUp",
             "type": "soilAbilityAttackUp",
             "label": "土属性アビリティ攻撃アップ"
@@ -362,6 +432,21 @@
             "id": "element-elementAttackUp-thunderAbilityAttackUp",
             "type": "thunderAbilityAttackUp",
             "label": "雷属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-waterAbilityAttackUp",
+            "type": "waterAbilityAttackUp",
+            "label": "水属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-darkAbilityAttackUp",
+            "type": "darkAbilityAttackUp",
+            "label": "闇属性アビリティ攻撃アップ"
+          },
+          {
+            "id": "element-elementAttackUp-lightAbilityAttackUp",
+            "type": "lightAbilityAttackUp",
+            "label": "光属性アビリティ攻撃アップ"
           }
         ]
       },
@@ -428,7 +513,7 @@
           {
             "id": "element-elementKillerUp-windKillerUp",
             "type": "windKillerUp",
-            "label": "土属性キラーアップ"
+            "label": "風属性キラーアップ"
           },
           {
             "id": "element-elementKillerUp-soilKillerUp",
@@ -439,6 +524,11 @@
             "id": "element-elementKillerUp-darkKillerUp",
             "type": "darkKillerUp",
             "label": "闇属性キラーアップ"
+          },
+          {
+            "id": "element-elementKillerUp-lightKillerUp",
+            "type": "lightKillerUp",
+            "label": "光属性キラーアップ"
           }
         ]
       }
@@ -460,7 +550,7 @@
           {
             "id": "others-penetrationUp-slashingResistPenetrationUp",
             "type": "slashingResistPenetrationUp",
-            "label": "斬撃耐性貫通率アップ"
+            "label": "斬撃攻撃耐性貫通率アップ"
           },
           {
             "id": "others-penetrationUp-magicAttackResistPenetrationUp",
@@ -503,6 +593,16 @@
         "id": "others-hateUp",
         "type": "hateUp",
         "label": "ヘイトアップ"
+      },
+      {
+        "id": "others-moveUp",
+        "type": "moveUp",
+        "label": "Moveアップ"
+      },
+      {
+        "id": "others-summonGaugeIncrementUp",
+        "type": "summonGaugeIncrementUp",
+        "label": "召喚ゲージ増加量アップ"
       }
     ]
   }

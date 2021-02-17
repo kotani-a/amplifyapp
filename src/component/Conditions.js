@@ -4,6 +4,7 @@ import HeaderSettingDialog from './HeaderSettingDialog';
 import ConditionDialog from './ConditionDialog'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,10 +12,61 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import Drawer from '@material-ui/core/Drawer';
 import elementOptions from '../constants/elementOptions.json';
+import { withStyles } from '@material-ui/core/styles';
+import css from '../css/Conditions.module.css';
+
+
+const CustomIconButton = withStyles(() => ({
+  root: {
+    position: 'fixed',
+    top: '5px',
+    right: '8px',
+    padding: '3px'
+  },
+}))(IconButton);
+
+const CustomDrawer = withStyles(() => ({
+  root: {
+    width: '280px',
+    '& .MuiDrawer-paper': {
+      padding: '8px',
+      boxSizing: 'border-box'
+    }
+  },
+}))(Drawer);
+
+const CustomTextField = withStyles(() => ({
+  root: {
+    '& > .MuiFilledInput-root': {
+      backgroundColor: 'transparent',
+      '&:hover': {
+        backgroundColor: 'transparent',
+      },
+      '&:before': {
+        border: 'none',
+      }
+    }
+  },
+}))(TextField);
+
+const CustomSelect = withStyles(() => ({
+  root: {
+    padding: '15.5px 14px',
+  },
+}))(Select);
+
+const CustomAccountTreeButton = withStyles(() => ({
+  root: {
+    minWidth: '48px'
+  },
+}))(Button);
 
 class Conditions extends Component {
   constructor (props) {
@@ -74,7 +126,7 @@ class Conditions extends Component {
       setCondisionAbility,
       setCondisionBonusAbility
     } = this.props
-    this.conditionDialogClose();
+    // this.conditionDialogClose();
     if (!selectVal) return
     switch (openDialogType) {
       case 'either':
@@ -203,7 +255,10 @@ class Conditions extends Component {
       selectedCardIds,
       changePossessionDisplay,
       possessionDisplay,
-      headers
+      headers,
+      drawerOpen,
+      openDrawer,
+      closeDrawer
     } = this.props
     const {
       eitherCondition,
@@ -218,10 +273,22 @@ class Conditions extends Component {
       buttonDisabled
     } = this.state
     return (
-      <div style={{margin: "0 24px"}}>
-        <h2>conditions</h2>
-        <div style={{display: "flex", margin: "0 12px"}}>
-          <div style={{display: "flex", margin: "0 4px"}}>
+      <div className={css.conditionsWrap}>
+        <CustomIconButton
+          onClick={openDrawer}>
+          <SearchIcon />
+        </CustomIconButton>
+        <CustomDrawer
+          variant="persistent"
+          anchor="right"
+          open={drawerOpen}
+          >
+          <CustomIconButton
+            onClick={closeDrawer}>
+            <CloseIcon />
+          </CustomIconButton>
+          <h2 className={css.conditionHeader}>条件</h2>
+          <div className={css.conditionBoxWrap}>
             <form
               noValidate
               autoComplete="off"
@@ -232,19 +299,26 @@ class Conditions extends Component {
                 value={eitherCondition}
                 options={abilityTypeOptoins}
                 getOptionLabel={option =>  option.label}
-                style={{ width: 250 }}
+                style={{ width: 210 }}
                 onChange={(event, newValue) => this.changeEitherCondition(newValue)}
-                renderInput={params => <TextField {...params} label="いずれかに含む" variant="outlined" />}
+                renderInput={params =>
+                  <CustomTextField
+                    {...params}
+                    label="いずれかに含む"
+                    variant="filled"
+                    size="small"
+                    color="secondary"
+                  />}
               />
             </form>
-            <Button
+            <hr className={css.divider}/>
+            <CustomAccountTreeButton
+              size="small"
               onClick={() => this.conditionDialogOpen('either')}
               startIcon={<AccountTreeIcon />}
               />
           </div>
-        </div>
-        <div style={{display: "flex", margin: "0 12px"}}>
-          <div style={{display: "flex", margin: "0 4px"}}>
+          <div className={css.conditionBoxWrap}>
             <form
               noValidate
               autoComplete="off"
@@ -255,16 +329,25 @@ class Conditions extends Component {
                 value={partyAbilityCondition}
                 options={abilityTypeOptoins}
                 getOptionLabel={option => option.label}
-                style={{ width: 250 }}
+                style={{ width: 210 }}
                 onChange={(event, newValue) => {this.changePartyAbilityCondition(newValue)}}
-                renderInput={params => <TextField {...params} label="パーティーアビリティ" variant="outlined" />}
+                renderInput={params =>
+                  <CustomTextField
+                    {...params}
+                    label="パーティーアビリティ"
+                    variant="filled"
+                    size="small"
+                    color="secondary"
+                  />}
               />
             </form>
-            <Button
+            <hr className={css.divider}/>
+            <CustomAccountTreeButton
+              size="small"
               onClick={() => this.conditionDialogOpen('partyAbility')}
               startIcon={<AccountTreeIcon />}/>
           </div>
-          <div style={{display: "flex", margin: "0 4px"}}>
+          <div className={css.conditionBoxWrap}>
             <form
               noValidate
               autoComplete="off"
@@ -275,16 +358,25 @@ class Conditions extends Component {
                 value={abilityCondition}
                 options={abilityTypeOptoins}
                 getOptionLabel={option => option.label}
-                style={{ width: 250 }}
+                style={{ width: 210 }}
                 onChange={(event, newValue) => {this.changeAbilityCondition(newValue)}}
-                renderInput={params => <TextField {...params} label="付加効果" variant="outlined" />}
+                renderInput={params =>
+                  <CustomTextField
+                    {...params}
+                    label="付加効果"
+                    variant="filled"
+                    size="small"
+                    color="secondary"
+                  />}
               />
             </form>
-            <Button
+            <hr className={css.divider}/>
+            <CustomAccountTreeButton
+              size="small"
               onClick={() => this.conditionDialogOpen('ability')}
               startIcon={<AccountTreeIcon />}/>
           </div>
-          <div style={{display: "flex", margin: "0 4px"}}>
+          <div className={css.conditionBoxWrap}>
             <form
               noValidate
               autoComplete="off"
@@ -295,26 +387,35 @@ class Conditions extends Component {
                 value={bonusAbilityCondition}
                 options={abilityTypeOptoins}
                 getOptionLabel={option => option.label}
-                style={{ width: 250 }}
+                style={{ width: 210 }}
                 onChange={(event, newValue) => {this.changeBonusAbilityCondition(newValue)}}
-                renderInput={params => <TextField {...params} label="ボーナスアビリティ" variant="outlined" />}
+                renderInput={params =>
+                  <CustomTextField
+                    {...params}
+                    label="ボーナスアビリティ"
+                    variant="filled"
+                    size="small"
+                    color="secondary"
+                  />}
               />
             </form>
-            <Button
+            <hr className={css.divider}/>
+            <CustomAccountTreeButton
+              size="small"
               onClick={() => this.conditionDialogOpen('bonusAbility')}
               startIcon={<AccountTreeIcon />}/>
           </div>
-          <div>
+          <div className={css.elementBoxWrap}>
             <FormControl
               variant="outlined"
               autoComplete="off"
               onBlur={() => setCondisionBonusAbilityActiveElement(bonusAbilityActiveElement)}
               onSubmit={event => this.handleSubmit(event)}>
               <InputLabel htmlFor="elementOption-select">ボーナスアビリティ発動属性</InputLabel>
-              <Select
+              <CustomSelect
                 native
                 value={elementOption}
-                style={{ width: 250 }}
+                style={{ width: 210 }}
                 onChange={event => this.changebonusAbilityActiveElementCondition(event)}
                 label="Age"
                 inputProps={{
@@ -329,49 +430,55 @@ class Conditions extends Component {
                       {option.label}
                     </option>);
                 })}
-              </Select>
+              </CustomSelect>
             </FormControl>
           </div>
+        </CustomDrawer>
+        <div className={css.conditionButtons}>
+          <FormControlLabel
+            control={<Switch
+              name="possessionDisplay"
+              disabled={!clientId}
+              checked={possessionDisplay}
+              onChange={event => changePossessionDisplay(event)}/>
+            }
+            label="所持"
+          />
+          <Button
+            disabled={!clientId || !selectedCardIds.length || buttonDisabled}
+            startIcon={<AddCircleIcon />}
+            onClick={() => this.addMyCards()}>
+            add myCards
+          </Button>
+          <Button
+            disabled={!clientId || !selectedCardIds.length || buttonDisabled}
+            startIcon={<RemoveCircleIcon />}
+            onClick={() => this.removeMyCards()}>
+            remove myCards
+          </Button>
+          <Button
+            startIcon={<SettingsIcon />}
+            onClick={() => this.headerSettingDialogOpen()}>
+            header setting
+          </Button>
+          <HeaderSettingDialog
+            headerSettingDialog={headerSettingDialog}
+            headerSettingDialogClose={this.headerSettingDialogClose}
+            headerSet={this.headerSet}
+            headers={headers}
+            >
+          </HeaderSettingDialog>
+          <ConditionDialog
+            conditionDialog={conditionDialog}
+            conditionDialogClose={this.conditionDialogClose}
+            conditionSet={this.conditionSet}
+            openDialogType={openDialogType}
+            eitherCondition={eitherCondition}
+            partyAbilityCondition={partyAbilityCondition}
+            abilityCondition={abilityCondition}
+            bonusAbilityCondition={bonusAbilityCondition}>
+          </ConditionDialog>
         </div>
-        <FormControlLabel
-          control={<Switch
-            name="possessionDisplay"
-            disabled={!clientId}
-            checked={possessionDisplay}
-            onChange={event => changePossessionDisplay(event)}/>
-          }
-          label="所持"
-        />
-        <Button
-          disabled={!clientId || !selectedCardIds.length || buttonDisabled}
-          startIcon={<AddCircleIcon />}
-          onClick={() => this.addMyCards()}>
-          add myCards
-        </Button>
-        <Button
-          disabled={!clientId || !selectedCardIds.length || buttonDisabled}
-          startIcon={<RemoveCircleIcon />}
-          onClick={() => this.removeMyCards()}>
-          remove myCards
-        </Button>
-        <Button
-          startIcon={<SettingsIcon />}
-          onClick={() => this.headerSettingDialogOpen()}>
-          header setting
-        </Button>
-        <HeaderSettingDialog
-          headerSettingDialog={headerSettingDialog}
-          headerSettingDialogClose={this.headerSettingDialogClose}
-          headerSet={this.headerSet}
-          headers={headers}
-          >
-        </HeaderSettingDialog>
-        <ConditionDialog
-          conditionDialog={conditionDialog}
-          conditionDialogClose={this.conditionDialogClose}
-          conditionSet={this.conditionSet}
-          openDialogType={openDialogType}>
-        </ConditionDialog>
       </div>
     );
   }

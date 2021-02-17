@@ -4,6 +4,26 @@ import Button from '@material-ui/core/Button';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import  DraggableItemGroup from './DraggableItemGroup.js';
+import { withStyles } from '@material-ui/core/styles';
+import css from '../css/HeaderSettingDialog.module.css'
+
+const CustomDialog = withStyles(() => ({
+  root: {
+    '& .MuiDialog-paper': {
+      width: '50%',
+      height: '50%',
+      padding: '8px',
+      overflowY: 'hidden'
+    }
+  },
+}))(Dialog);
+
+const CustomButton = withStyles(() => ({
+  root: {
+    alignSelf: 'center',
+    marginTop: 'auto'
+  },
+}))(Button);
 
 class HeaderSettingDialog extends Component {
   constructor (props) {
@@ -67,21 +87,21 @@ class HeaderSettingDialog extends Component {
     const { tmpHeaders } = this.state
     const { headerSettingDialog } = this.props
     return (
-      <Dialog
+      <CustomDialog
         open={headerSettingDialog}
         onClose={() => this.headerSettingDialogClose()}>
-        <h2>テーブルヘッダーの順番</h2>
+        <h2 className={css.headerText}>テーブルヘッダー設定</h2>
         <DndProvider backend={HTML5Backend}>
           <DraggableItemGroup
             tmpHeaders={tmpHeaders}
             setTmpHeader={this.setTmpHeader} />
         </DndProvider>
-        <Button
+        <CustomButton
           variant="outlined"
           onClick={() => this.headerSet()}>
           確定
-        </Button>
-      </Dialog>
+        </CustomButton>
+      </CustomDialog>
     );
   }
 }
